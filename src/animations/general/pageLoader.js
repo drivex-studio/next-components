@@ -102,7 +102,6 @@ export default function Preloader() {
                 val <= 0.5 ? `polygon(0% 100%, ${2 * val * 100}% 0%, 100% 0%, 100% 100%)` :
                 `polygon(0% 100%, 100% ${(val - 0.5) * 200}%, 100% 100%)`;
             }
-            
             if (!eventState.value && clipState.value >= 0.9) {
               eventState.value = true;
               setPhase("revealing");
@@ -120,7 +119,6 @@ export default function Preloader() {
       timelineRef.current?.kill();
     };
     
-    // Explicitly leaving out 'phase' to avoid timeline destruction mid-animation
   }, { dependencies: [isInitialLoad, isReducedMotion, setPhase] });
 
   if (!isInitialLoad || phase === "hidden") return null;
@@ -153,15 +151,13 @@ export default function Preloader() {
           ))}
         </div>
         </div> 
-
         <div>
         <div className="overflow-hidden">
           <ScrambleText revealMode={true} duration={1} onReady={handleReady}>
             LOADING
           </ScrambleText>
         </div>
-        </div> <!-- loading text close -->
-        
+        </div>       
       </div>
     </div>
   );
